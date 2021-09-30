@@ -1,0 +1,22 @@
+quiz_list = ["question1 : Capitale de la France?", "question2 : Quelle est le prenom de ton formateur?", "question3 : Quelle est la couleur du ciel"] 
+reponse_list = ["paris","anthony","bleu"]
+score = 0
+
+for j in range(len(quiz_list)) :
+    nb_essai= 3
+    while nb_essai > 0 :
+        
+        print(quiz_list[j])
+        reponse = input("Entrer votre réponse : ")
+        if reponse.lower() == reponse_list[j]:
+            score+=1
+            print('bonne reponse,votre score est : {}'.format(score))
+            break
+        else :
+            nb_essai-=1
+            print('mauvaise reponse,il vous reste {} essai(s) '.format(nb_essai))
+    else:
+        print("le jeu est terminé, votre score est {}".format(score))
+        break
+    if score == 3 :
+        print('Vous avez gagné, votre score est de {}'.format(score))
