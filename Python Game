@@ -1,22 +1,69 @@
-quiz_list = ["question1 : Capitale de la France?", "question2 : Quelle est le prenom de ton formateur?", "question3 : Quelle est la couleur du ciel"] 
-reponse_list = ["paris","anthony","bleu"]
-score = 0
+print("""\n\n
+---------------------------------
+- Bienvenue sur mon super jeu ! -
+---------------------------------
+""")
+print("""
+Règles:
+1. Tu as 3 essais par question
+2. À chaque bonne réponse, tu gagnes 1 point
+3. Les essais se réinitialisent quand tu réponds correctement à une question
+""")
 
-for j in range(len(quiz_list)) :
-    nb_essai= 3
-    while nb_essai > 0 :
-        
-        print(quiz_list[j])
-        reponse = input("Entrer votre réponse : ")
-        if reponse.lower() == reponse_list[j]:
-            score+=1
-            print('bonne reponse,votre score est : {}'.format(score))
-            break
-        else :
-            nb_essai-=1
-            print('mauvaise reponse,il vous reste {} essai(s) '.format(nb_essai))
+list_questions = ["Question 1: \nDe quelle couleur est l'enfant de la poule?", 
+                  "Question 2: \nEst-ce que Madrid est la capitale de la Belgique? \n(a)True\n(b)False", 
+                  "Question 3: \nCombien de nains y a t'il dans Blanche Neige"]
+
+list_answers = ["Jaune", "False", 7]
+
+nb_tries = 3
+nb_points = 0
+
+print(list_questions[0])
+
+while list_answers[0] != str(input()).title():
+  nb_tries -= 1 
+  
+  if nb_tries != 0:
+    print("\nFaux ! Il te reste {} essai(s)" .format(nb_tries))
+  else:
+    print("\nDommage ! Tu as perdu ! \nScore total: {} point(s)" .format(nb_points))
+    break
+
+else:
+  nb_tries = 3
+  nb_points += 1
+  print("\nBravo! Très bonne réponse !\nTu as de nouveau {} essai(s)." .format(nb_tries))
+  print("Tu as gagné {} point(s).\n" .format(nb_points))
+  print(list_questions[1])
+
+  while list_answers[1] != str(input()).title():
+    nb_tries -= 1 
+
+    if nb_tries != 0:
+      print("\nFaux ! Il te reste {} essai(s)." .format(nb_tries))
     else:
-        print("le jeu est terminé, votre score est {}".format(score))
+      print("\nDommage ! Tu as perdu ! \nScore Total: {} point(s)" .format(nb_points))
+      break
+
+  else:
+    nb_tries = 3
+    nb_points += 1
+    print("\nBravo! Très bonne réponse !\nTu as de nouveau {} essai(s)." .format(nb_tries))
+    print("Tu as maintenant {} point(s).\n" .format(nb_points))
+    print(list_questions[2] + " (en chiffres) ?")
+
+    while list_answers[2] != int(input()):
+      nb_tries -= 1 
+
+      if nb_tries != 0:
+        print("\nFaux ! Il te reste {} essai(s)." .format(nb_tries))
+      else:
+        print("\nDommage ! Tu as perdu ! \nScore total: {} point(s)" .format(nb_points))
         break
-    if score == 3 :
-        print('Vous avez gagné, votre score est de {}'.format(score))
+
+    else:
+      nb_points += 1
+      print("""\nTu as terminé le jeu avec le meilleur score: {} point(s).
+Félicitations !
+      """.format(nb_points))
